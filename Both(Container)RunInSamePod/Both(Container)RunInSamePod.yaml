@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-app
+
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: node-app
+
+  template:
+    metadata:
+      labels:
+        app: node-app
+
+    spec:
+      containers:
+      - name: node-app
+        image: philippaul/node-mongo-db:02
+      - name: mongodb
+        image: mongo:latest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-node-app
+
+spec:
+  ports:
+  - name: http
+    port: 8080
+    targetPort: 3000
+
+  selector:
+    app: node-app
+
+  type: LoadBalancer
