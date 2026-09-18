@@ -4,7 +4,7 @@ metadata:
   # Unique key of the Deployment instance
   name: mongo-app
 spec:
-  # 3 Pods should exist at all times.
+  # 1 Pods should exist at all times.
   replicas: 1
   selector:
     matchLabels:
